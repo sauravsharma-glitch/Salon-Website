@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Elegant salon favicon (spa symbol) -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23b9684b'/><text x='50' y='70' font-size='50' text-anchor='middle' fill='white' font-weight='300'>💆</text></svg>">
+    <title>LUMINA SALON · beauty & wellness</title>
+    <!-- font awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Playfair Display', 'Inter', system-ui, sans-serif;
+        }
+
+        body {
+            background: #fcf7f2;  /* soft warm white */
+            color: #3f2e2a;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        /* navigation – elegant & light */
+        nav {
+            background: rgba(255, 248, 242, 0.92);
+            backdrop-filter: blur(12px);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(190, 145, 120, 0.2);
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #b2826b;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .logo i {
+            color: #c99a82;
+            margin-right: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 24px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #4f3b35;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+            font-size: 1rem;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-links a:hover {
+            color: #b2826b;
+            border-bottom-color: #b2826b;
+        }
+
+        .nav-links .wa-nav {
+            background: #25D366;
+            color: white;
+            padding: 8px 22px;
+            border-radius: 40px;
+            border-bottom: none;
+        }
+
+        .nav-links .wa-nav:hover {
+            background: #128C7E;
+            color: white;
+            border-bottom: none;
+        }
+
+        /* hero – salon soft glam */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(127deg, #f2e4db 0%, #fae9df 100%);
+            background-image: url('https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1974&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center 20%;
+            background-blend-mode: soft-light;
+        }
+
+        .hero-content {
+            max-width: 650px;
+            background: rgba(255, 250, 245, 0.7);
+            backdrop-filter: blur(4px);
+            padding: 40px 45px;
+            border-radius: 60px 20px 60px 20px;
+            box-shadow: 0 25px 40px -20px #b99a8b;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 7vw, 4.2rem);
+            font-weight: 600;
+            font-family: 'Playfair Display', serif;
+            line-height: 1.1;
+            color: #2f211e;
+        }
+
+        .hero h1 span {
+            color: #b9684b;
+            font-style: italic;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #4d3630;
+            margin: 20px 0 25px;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .btn-primary {
+            background: #b9684b;
+            color: white;
+            padding: 14px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: #9b4f38;
+            transform: scale(1.02);
+        }
+
+        .btn-wa {
+            background: #25D366;
+            color: white;
+            padding: 14px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-wa:hover {
+            background: #128C7E;
+        }
+
+        /* section styling */
+        .section-pad {
+            padding: 90px 0 60px;
+        }
+
+        .section-title {
+            font-size: clamp(2.2rem, 5vw, 3rem);
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #352721;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 2px;
+            background: #c99a82;
+            margin: 16px auto 0;
+        }
+
+        /* features / services grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 40px 25px 30px;
+            border-radius: 40px 20px 40px 20px;
+            text-align: center;
+            box-shadow: 0 15px 30px -15px #d9bfb2;
+            transition: 0.2s;
+            border: 1px solid #f2ded3;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 35px -15px #b2826b;
+        }
+
+        .service-card i {
+            font-size: 48px;
+            color: #b9684b;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.6rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .service-card p {
+            color: #68524b;
+        }
+
+        /* pricing / services list */
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .price-card {
+            background: white;
+            border-radius: 30px;
+            padding: 30px 25px;
+            box-shadow: 0 15px 25px -15px #d9bfb2;
+            border: 1px solid #f2ded3;
+        }
+
+        .price-card h3 {
+            font-size: 1.7rem;
+            font-weight: 500;
+            border-bottom: 1px dashed #c99a82;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px dotted #eeddd2;
+        }
+
+        .price-item span:first-child {
+            font-weight: 500;
+        }
+
+        .price-item span:last-child {
+            color: #b9684b;
+            font-weight: 600;
+        }
+
+        /* team stylists */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 40px 20px 40px 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 25px -15px #d9bfb2;
+            transition: 0.2s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .team-card img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .team-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .team-info h4 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .team-info p {
+            color: #b9684b;
+            margin-bottom: 12px;
+        }
+
+        .team-social a {
+            color: #b2826b;
+            margin: 0 10px;
+            font-size: 1.2rem;
+        }
+
+        .team-social a:hover {
+            color: #9b4f38;
+        }
+
+        /* gallery / insta strip */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery-item {
+            height: 200px;
+            border-radius: 30px 10px 30px 10px;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 10px 18px #e9d5cb;
+        }
+
+        /* contact / enquiry form (all details to whatsapp) */
+        .contact-luxury {
+            background: white;
+            border-radius: 60px 20px 60px 20px;
+            padding: 60px 50px;
+            box-shadow: 0 30px 45px -25px #c5a392;
+            margin-top: 40px;
+        }
+
+        .contact-flex {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 50px;
+        }
+
+        .info-col h3 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            font-family: 'Playfair Display', serif;
+            color: #352721;
+        }
+
+        .info-col p {
+            color: #68524b;
+            margin: 20px 0 30px;
+        }
+
+        .detail-line {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .detail-line i {
+            width: 48px;
+            height: 48px;
+            background: #fae1d4;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #b9684b;
+            font-size: 1.3rem;
+        }
+
+        .form-col .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-col input, .form-col select, .form-col textarea {
+            width: 100%;
+            padding: 14px 18px;
+            background: #fdf5f0;
+            border: 1px solid #eeddd2;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            color: #352721;
+        }
+
+        .form-col input:focus, .form-col select:focus, .form-col textarea:focus {
+            border-color: #b9684b;
+            outline: none;
+        }
+
+        .btn-submit-wa {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 16px;
+            width: 100%;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-submit-wa:hover {
+            background: #128C7E;
+        }
+
+        /* footer with all policies */
+        footer {
+            background: #2c211e;
+            color: #ddcdc5;
+            padding: 70px 0 20px;
+            margin-top: 80px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 40px 30px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.3rem;
+            margin-bottom: 22px;
+            color: #e2c4b8;
+            font-weight: 500;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: #cfa392;
+            text-decoration: none;
+        }
+
+        .footer-col ul li a:hover {
+            color: #e2b9a8;
+        }
+
+        .social-links a {
+            color: #cfa392;
+            font-size: 1.4rem;
+            margin-right: 18px;
+        }
+
+        .social-links a:hover {
+            color: #e2b9a8;
+        }
+
+        .legal-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0 15px;
+            border-top: 1px solid #4f3e3a;
+            margin-top: 40px;
+            color: #a6897e;
+            font-size: 0.9rem;
+        }
+
+        .legal-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        .legal-links a {
+            color: #cfa392;
+            text-decoration: none;
+        }
+
+        .legal-links a:hover {
+            color: #e2b9a8;
+        }
+
+        .cookie-badge {
+            background: #3d2d29;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+        }
+
+        .cookie-badge i {
+            color: #b9684b;
+            margin-right: 5px;
+        }
+
+        .wa-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+            z-index: 99;
+        }
+
+        @media (max-width: 800px) {
+            .contact-flex {
+                grid-template-columns: 1fr;
+            }
+            .nav-wrapper {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container nav-wrapper">
+            <div class="logo"><i class="fas fa-spa"></i> LUMINA</div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#team">Stylists</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#contact">Contact</a>
+                <a href="https://wa.me/919027038209?text=Hi%20Lumina%20Salon%2C%20I'm%20interested" class="wa-nav" target="_blank"><i class="fab fa-whatsapp"></i> DM</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- hero -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1>where <span>beauty</span><br>meets serenity</h1>
+            <p>Premium salon & wellness. Organic products, expert stylists, and a tranquil space just for you.</p>
+            <div class="btn-group">
+                <a href="#contact" class="btn-primary">book appointment</a>
+                <a href="https://wa.me/919027038209?text=Hello%20Lumina%2C%20I%27d%20like%20to%20know%20more%20about%20your%20services" class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- services -->
+    <section class="container section-pad" id="services">
+        <h2 class="section-title">our signature services</h2>
+        <div class="services-grid">
+            <div class="service-card"><i class="fas fa-cut"></i><h3>Hair Styling</h3><p>Precision cuts, balayage, keratin treatments</p></div>
+            <div class="service-card"><i class="fas fa-paint-brush"></i><h3>Color & Blends</h3><p>Organic dyes, ombre, root touch-up</p></div>
+            <div class="service-card"><i class="fas fa-hand-sparkles"></i><h3>Facial & Glow</h3><p>Deep cleansing, oxygen facial, microdermabrasion</p></div>
+            <div class="service-card"><i class="fas fa-magic"></i><h3>Bridal Makeup</h3><p>Airbrush, HD makeup, trial sessions</p></div>
+        </div>
+    </section>
+
+    <!-- pricing / menu -->
+    <section class="container section-pad" id="pricing">
+        <h2 class="section-title">price menu</h2>
+        <div class="price-grid">
+            <div class="price-card">
+                <h3>Hair</h3>
+                <div class="price-item"><span>Women's cut</span><span>₹1,200</span></div>
+                <div class="price-item"><span>Men's cut</span><span>₹700</span></div>
+                <div class="price-item"><span>Keratin smoothing</span><span>₹4,500</span></div>
+                <div class="price-item"><span>Global hair color</span><span>₹3,200</span></div>
+                <div class="price-item"><span>Highlights</span><span>₹3,800</span></div>
+            </div>
+            <div class="price-card">
+                <h3>Skin & Face</h3>
+                <div class="price-item"><span>Oxygen facial</span><span>₹2,200</span></div>
+                <div class="price-item"><span>Gold facial</span><span>₹3,500</span></div>
+                <div class="price-item"><span>Clean up (women)</span><span>₹900</span></div>
+                <div class="price-item"><span>Threading / wax</span><span>₹150</span></div>
+                <div class="price-item"><span>Bridal makeup</span><span>₹8,500</span></div>
+            </div>
+            <div class="price-card">
+                <h3>Nails & Spa</h3>
+                <div class="price-item"><span>Gel manicure</span><span>₹1,100</span></div>
+                <div class="price-item"><span>Pedicure (spa)</span><span>₹1,600</span></div>
+                <div class="price-item"><span>Nail art</span><span>₹500</span></div>
+                <div class="price-item"><span>Waxing full body</span><span>₹1,900</span></div>
+                <div class="price-item"><span>Head massage</span><span>₹700</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- team -->
+    <section class="container section-pad" id="team">
+        <h2 class="section-title">meet your stylists</h2>
+        <div class="team-grid">
+            <div class="team-card"><img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=500&auto=format" alt="stylist"><div class="team-info"><h4>Maya Sen</h4><p>hair expert</p><div class="team-social"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-whatsapp"></i></a></div></div></div>
+            <div class="team-card"><img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=500&auto=format" alt="stylist"><div class="team-info"><h4>Anjali Mehta</h4><p>makeup artist</p><div class="team-social"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-whatsapp"></i></a></div></div></div>
+            <div class="team-card"><img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=500&auto=format" alt="stylist"><div class="team-info"><h4>Riya Kapoor</h4><p>skin & facial</p><div class="team-social"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-whatsapp"></i></a></div></div></div>
+            <div class="team-card"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&auto=format" alt="stylist"><div class="team-info"><h4>Neha Singh</h4><p>nail artist</p><div class="team-social"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-whatsapp"></i></a></div></div></div>
+        </div>
+    </section>
+
+    <!-- mini gallery -->
+    <section class="container section-pad" id="gallery">
+        <h2 class="section-title">glam moments</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1562322140-8baeececf3df?w=500&auto=format')"></div>
+            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=500&auto=format')"></div>
+            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=500&auto=format')"></div>
+            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1562322140-8baeececf3df?w=500&auto=format')"></div>
+            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=500&auto=format')"></div>
+        </div>
+    </section>
+
+    <!-- contact / enquiry form (ALL DETAILS TO WHATSAPP) -->
+    <section class="container section-pad" id="contact">
+        <div class="contact-luxury">
+            <h2 class="section-title" style="margin-bottom:20px;">book your glow</h2>
+            <div class="contact-flex">
+                <div class="info-col">
+                    <h3>let's talk beauty</h3>
+                    <p>Fill the form and we'll confirm via WhatsApp within 30 min. Your details help us personalise your visit.</p>
+                    <div class="detail-line"><i class="fas fa-map-pin"></i><span>Pali Hill, Bandra West, Mumbai 400050</span></div>
+                    <div class="detail-line"><i class="fas fa-phone-alt"></i><span>+91 90270 38209</span></div>
+                    <div class="detail-line"><i class="fab fa-whatsapp"></i><span>+91 90270 38209 (instant)</span></div>
+                    <div class="detail-line"><i class="fas fa-clock"></i><span>Mon-Sat 9am – 8pm · Sun 10am–5pm</span></div>
+                    <div class="detail-line"><i class="fas fa-clock"></i><span>Email: saurav343sharma@gmail.com </span></div>
+                    <!-- cookie consent mini -->
+                    <div style="background: #fae1d4; border-radius: 60px; padding: 10px 25px; margin-top: 30px; color:#4f3e3a;"><i class="fas fa-cookie-bite" style="color:#b9684b;"></i> we respect your privacy · <a href="Cookie policy.html" style="color:#b9684b;">cookie policy</a></div>
+                </div>
+                <div class="form-col">
+                    <form id="salonForm" onsubmit="sendToWhatsApp(event)">
+                        <div class="form-row">
+                            <input type="text" id="firstName" placeholder="First name *" required>
+                            <input type="text" id="lastName" placeholder="Last name *" required>
+                        </div>
+                        <input type="email" id="email" placeholder="Email *" required>
+                        <div class="form-row">
+                            <input type="tel" id="phone" placeholder="Phone *" required value="+91">
+                            <input type="number" id="age" placeholder="Age" min="10">
+                        </div>
+                        <div class="form-row">
+                            <select id="gender"><option>Gender (optional)</option><option>Female</option><option>Male</option><option>Other</option></select>
+                            <select id="service" required>
+                                <option value="">Select service *</option>
+                                <option>Hair cut & style</option><option>Hair color</option><option>Facial / clean up</option><option>Bridal makeup</option><option>Manicure / pedicure</option><option>Waxing</option><option>Spa massage</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <select id="preferredDate"><option>Preferred date (approx)</option><option>Today</option><option>Tomorrow</option><option>This week</option><option>Next week</option></select>
+                            <select id="preferredTime"><option>Preferred time</option><option>9am–12pm</option><option>12pm–3pm</option><option>3pm–6pm</option><option>6pm–8pm</option></select>
+                        </div>
+                        <textarea id="specialRequest" rows="2" placeholder="Special requests / allergies / bridal notes (optional)"></textarea>
+                        <textarea id="message" rows="2" placeholder="How can we help? (optional)"></textarea>
+                        <button type="submit" class="btn-submit-wa"><i class="fab fa-whatsapp"></i> Send details on WhatsApp</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER with privacy, cookies, terms -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4><i class="fas fa-spa"></i> LUMINA</h4>
+                    <p>Premium beauty salon. Where elegance meets self-care.</p>
+                    <div class="social-links"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-whatsapp"></i></a><a href="#"><i class="fab fa-facebook"></i></a></div>
+                </div>
+                <div class="footer-col">
+                    <h4>Explore</h4>
+                    <ul><li><a href="#home">Home</a></li><li><a href="#services">Services</a></li><li><a href="#pricing">Price list</a></li><li><a href="#team">Stylists</a></li><li><a href="#gallery">Gallery</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal & policies</h4>
+                    <ul><li><a href="#" id="privacyLink">Privacy policy</a></li><li><a href="#" id="termsLink">Terms of use</a></li><li><a href="#" id="cookieLink">Cookie policy</a></li><li><a href="#" id="gdprLink">GDPR</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul><li><i class="fas fa-phone"></i> +91 90270 38209</li><li><i class="fab fa-whatsapp"></i> +91 90270 38209</li><li><i class="fas fa-envelope"></i> hello@lumina.in</li></ul>
+                </div>
+            </div>
+
+            <div class="legal-row">
+                <div class="legal-links">
+                    <a href="privacy.html"><i class="fas fa-shield-alt"></i> Privacy</a>
+                    <a href="terms.html"><i class="fas fa-file-contract"></i> Terms</a>
+                    <a href="Cookie policy.html"><i class="fas fa-cookie"></i> Cookies</a>
+                    <a href="#"><i class="fas fa-user-lock"></i> Data policy</a>
+                </div>
+                <div class="cookie-badge"><i class="fas fa-cookie-bite"></i> We use essential cookies</div>
+                <div>© 2025 Lumina Salon</div>
+            </div>
+            <div style="text-align: center; margin-top: 30px; color: #a6897e; font-size:0.85rem;">By using this site you agree to our <a href="#" style="color:#cfa392;">Privacy</a> and <a href="#" style="color:#cfa392;">Cookie Policy</a>.</div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/919027038209?text=Hi%20Lumina%20Salon%2C%20I%20need%20assistance" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+    <script>
+        function sendToWhatsApp(e) {
+            e.preventDefault();
+            const fName = document.getElementById('firstName')?.value || '';
+            const lName = document.getElementById('lastName')?.value || '';
+            const email = document.getElementById('email')?.value || '';
+            const phone = document.getElementById('phone')?.value || '';
+            const age = document.getElementById('age')?.value || 'not given';
+            const gender = document.getElementById('gender')?.value || 'not specified';
+            const service = document.getElementById('service')?.value || '';
+            const prefDate = document.getElementById('preferredDate')?.value || '';
+            const prefTime = document.getElementById('preferredTime')?.value || '';
+            const special = document.getElementById('specialRequest')?.value || 'none';
+            const msg = document.getElementById('message')?.value || 'none';
+
+            const whatsappMsg = `*LUMINA SALON enquiry*%0A%0A*Name*: ${fName} ${lName}%0A*Email*: ${email}%0A*Phone*: ${phone}%0A*Age*: ${age}%0A*Gender*: ${gender}%0A*Service*: ${service}%0A*Preferred date*: ${prefDate}%0A*Time*: ${prefTime}%0A*Special request*: ${special}%0A*Message*: ${msg}%0A%0A_Sent from website_`;
+            window.open(`https://wa.me/919027038209?text=${whatsappMsg}`, '_blank');
+        }
+        // demo policy alerts
+        document.querySelectorAll('#privacyLink, #termsLink, #cookieLink, #gdprLink, .legal-links a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                alert('📄 Policy page would open here. (Demo integration)');
+            });
+        });
+    </script>
+</body>
+</html>
